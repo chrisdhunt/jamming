@@ -9,17 +9,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchResults: [
-        // {name: "a", artist: "b", album: "c", id: "1"},
-        // {name: "d", artist: "e", album: "f", id: "2"},
-        // {name: "h", artist: "i", album: "j", id: "3"}
-      ],
-      playlistName: "My Favorite Songs",
-      playlistTracks: [
-        // {name: "x", artist: "y", album: "z", id: "5"},
-        // {name: "q", artist: "r", album: "s", id: "6"},
-        // {name: "t", artist: "u", album: "v", id: "7"}
-      ]
+      searchResults: [],
+      playlistName: "New Playlist",
+      playlistTracks: []
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -28,6 +20,11 @@ class App extends Component {
     this.search = this.search.bind(this);
   }
 
+  // addTrack
+  // Description:
+  //  Accept a track argument. Use the track's id property to check if thecurrent
+  //  song is in the playlistTracks state. If the id is new, add the song to the end
+  //  of the playlist. Set the new state of the playlist.
   addTrack(track){
     if(this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
@@ -36,16 +33,31 @@ class App extends Component {
     newList.push(track);
     this.setState({playlistTracks: newList});
   }
+  // removeTrack
+  // Description:
+  //  Accept a track argument. Use the track's id property to filter it out of
+  //  playlistTracks. Set the new state of the playlist.
   removeTrack(track){
     if(this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-      let newList = this.state.playlistTracks.filter(removeTrack => removeTrack.id !== track.id);
+      let newList = this.state.playlistTracks.filter(
+        removeTrack => removeTrack.id !== track.id
+      );
       this.setState({playlistTracks: newList});
     }
     return;
   }
+  // updatePlaylistName
+  // Description:
+  //  Accept a name argument. Set the state of the playlist name to the input
+  //  argument.
   updatePlaylistName(name){
     this.setState({playlistName: name});
   }
+  // savePlaylist
+  // Description:
+  //  Generate an array of uri values called trackURIs from the playlistTracks
+  //  property. Pass the track URIs array and playlistName to Spotify utility
+  //  to save the user's playlist to their account.
   savePlaylist(){
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
     Spotify.savePlaylist(this.state.playlistName, trackURIs);
@@ -54,12 +66,14 @@ class App extends Component {
       playlistTracks: []
     });
   }
-  // search function
-  //  1. Accepts search term
-  //  2. Logs the term to the console
+  // search
+  // Description:
+  //  Accept a search term and query the Spotify API using the input search term.
   search(searchTerm){
     console.log("Here is what I'm searching for: " + searchTerm);
-    Spotify.search(searchTerm).then(searchResults => this.setState({searchResults: searchResults}));
+    Spotify.search(searchTerm).then(searchResults =>
+      this.setState({searchResults: searchResults})
+    );
   }
 
   render() {
@@ -68,7 +82,8 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar onSearch={this.search}/>
+          <SearchBar
+            onSearch={this.search}/>
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}

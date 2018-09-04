@@ -4,7 +4,6 @@ import Track from '../Track/Track';
 
 class TrackList extends Component {
   render() {
-    console.log(this.props.tracks);
     return (
       <div className="TrackList">
         {
@@ -18,7 +17,6 @@ class TrackList extends Component {
                 isRemoval={this.props.isRemoval}/>
             );
           })
-          // <Track track={this.props.tracks[0]} key={this.props.tracks[0].id} />
         }
       </div>
     );
