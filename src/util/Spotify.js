@@ -2,8 +2,7 @@ let accessToken = '';
 let expireIn = '';
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const clientID = '84c9c6b2b727472fa57d92af0fc8ee34';
-const redirectURI = "http://localhost:3000/";
-// const redirectURI = "https://chrisdhunt.surge.sh";
+const redirectURI = "http://chrisdhunt.surge.sh";
 
 const Spotify = {
   // getAccessToken
