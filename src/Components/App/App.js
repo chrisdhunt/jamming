@@ -80,10 +80,10 @@ class App extends Component {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
-        <div className="App">
+        <div className="app">
           <SearchBar
             onSearch={this.search}/>
-          <div className="App-playlist">
+          <div className="app-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}/>
