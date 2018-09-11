@@ -3,6 +3,7 @@ let expireIn = '';
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const clientID = '84c9c6b2b727472fa57d92af0fc8ee34';
 const redirectURI = "http://chrisdhunt.surge.sh";
+// const redirectURI = "http://localhost:3000";
 
 const Spotify = {
   // getAccessToken
@@ -51,7 +52,8 @@ const Spotify = {
             name: track.name,
             artist: track.artists[0].name,
             album: track.album.name,
-            uri: track.uri
+            uri: track.uri,
+            preview_url: track.preview_url
           }));
         } else { // If no track object exists, return an empty array.
           return [];
