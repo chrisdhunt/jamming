@@ -70,7 +70,6 @@ class App extends Component {
   // Description:
   //  Accept a search term and query the Spotify API using the input search term.
   search(searchTerm){
-    console.log("Here is what I'm searching for: " + searchTerm);
     Spotify.search(searchTerm).then(searchResults =>
       this.setState({searchResults: searchResults})
     );

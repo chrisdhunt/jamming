@@ -39,7 +39,6 @@ const Spotify = {
   //  array of track information for each result returned.
   search( searchTerm ){
     const currentAccessToken = this.getAccessToken();
-    console.log("Current access token: "+currentAccessToken);
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`,
       {headers: {Authorization: `Bearer ${currentAccessToken}`}}
     ).then( // Convert the return object to JSON for easier manipulation
